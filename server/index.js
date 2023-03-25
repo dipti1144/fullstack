@@ -6,6 +6,7 @@ require("dotenv").config({path:"server/.env"});
 
 const app = express();
 const port = process.env.PORT;
+console.log(port)
 
 app.use(express.json());
 
@@ -15,12 +16,8 @@ app.get("/", (req, res) => {
 
 app.use("/movie", movieRouter);
 
-app.listen(port, async() => {
-  try {
-    await connection;
-    console.log(`port is running at ${port}`);
-    console.log("connection") 
-  } catch (error) {
-    console.log(error.message);
-  }
+connection()
+
+app.listen(port,() => {
+  console.log(`Server is working on http://localhost:${port}`);
 });
